@@ -1,0 +1,26 @@
+nome: "Mateus"
+idade: 44
+
+objeto:             #Comentário 1
+  versao: 2
+  arquivo: "teste.yaml"
+
+  # Comentário 2
+
+  # Dictionary
+  obj: {a: 1, b: 2, c:3}
+
+  objeto:
+    a: 1
+    b: 2
+    c: 3
+  
+  lista: [1, 2, 3, 4]
+
+  lista_dois:
+    - "teste"
+    - 22
+    - True
+    - outro teste
+
+
