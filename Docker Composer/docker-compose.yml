@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:           ### AQUI ESTAMOS CRIANDO
+  db:                                       #Nome dado para o contaner do mysql
+    image: mysql:5.7                        #FROM mysql:5.7  -> Versão da imagem do mysql
+    volumes:                                #Lista de volumes para salvar aquivos
+      - db_data:/var/lib/mysql              #Caminho do volume, pode ter uma lista de volumes
+    restart: always                         #Que dizer que todas as alterações feitas neste arquivo aqui serão atualizadas automaticamente.
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: matheus
+      MYSQL_PASSWORD: secret
+                      ### AQUI ESTAMOS ACESSANDO
+  wordpress:
+    depends_on:                             #Lista de quais serviços o wordpress depende. Nesse caso somente o db
+      - db
+    image:  wordpress:latest
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: matheus
+      WORDPRESS_DB_PASSWORD: secret
+      WORDPRESS_DB_NAME: wordpress
+
+volumes:
+  db_data: {}
+
+ ### docker-compose up    ### CTRL + C => para de executar
